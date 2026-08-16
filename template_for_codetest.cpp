@@ -244,20 +244,35 @@ void debug_ll(Head h, Tail... t) {
 
 #define dbg(...) cerr << "[" << #__VA_ARGS__ << "] = ", debug_ll(__VA_ARGS__)
 
+void debug(const string& S){
+  cerr << S << '\n';
+}
 
-void debug(const vl& A){
-  forr(c,A){
-    cerr << c << " ";
+template<class T>
+void debug(const vector<T>& A){
+  forr(x,A){
+    cerr << x << ' ';
   }
   cerr << '\n';
 }
 
-void debug(const vvl& A){
-  rep(i,ssize(A)){
-    forr(c,A[i]){
-      cerr << c << " ";
-    }
-    cerr << '\n';
+void debug(const vb& A){
+  forr(x,A){
+    cerr << (int)x << ' ';
+  }
+  cerr << '\n';
+}
+
+void debug(const vector<string>& A){
+  forr(s,A){
+    cerr << s << '\n';
+  }
+}
+
+template<class T>
+void debug(const vector<vector<T>>& A){
+  forr(row,A){
+    debug(row);
   }
 }
 
@@ -267,32 +282,6 @@ void debug(const deque<T>& A){
     cerr << c << " ";
   }
   cerr << '\n';
-}
-
-void debug(const vb& A){
-  for (char c : A){
-    cerr << (int)c << " ";
-  }
-  cerr << '\n';
-}
-
-void debug(const string& S){
-  cerr << S << '\n';
-}
-
-void debug(const vector<string>& A){
-  forr(s,A){
-    cerr << s << '\n';
-  }
-}
-
-void debug(const vvb& A){
-  for (const auto& row : A){
-    for (char c : row){
-      cerr << (int)c << " ";
-    }
-    cerr << '\n';
-  }
 }
 
 template<class T>
@@ -331,14 +320,6 @@ template<class T,class U>
 void debug(const unordered_map<T,U>& mp){
   for (auto [k,v] : mp){
     cerr << "(" << k << "," << v << ") ";
-  }
-  cerr << '\n';
-}
-
-template<class T,class U>
-void debug(const vector<pair<T,U>>& A){
-  for (auto [x,y] : A){
-    cerr << "(" << x << "," << y << ") ";
   }
   cerr << '\n';
 }
