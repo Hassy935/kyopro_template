@@ -276,6 +276,16 @@ void debug(const vb& A){
   cerr << '\n';
 }
 
+void debug(const string& S){
+  cerr << S << '\n';
+}
+
+void debug(const vector<string>& A){
+  forr(s,A){
+    cerr << s << '\n';
+  }
+}
+
 void debug(const vvb& A){
   for (const auto& row : A){
     for (char c : row){
