@@ -71,8 +71,7 @@ using priority_queue_g=priority_queue<T,vc<T>,greater<T>>;
 template<typename T> bool chmin(T& a, T b){if(a > b){a = b; return true;} return false;}
 template<typename T> bool chmax(T& a, T b){if(a < b){a = b; return true;} return false;}
 
-template<typename T>
-ll popcountll(T a){
+ll popcountll(ll a){
   assert(a>=0);
   return popcount((unsigned long long)a);
 }
@@ -193,6 +192,7 @@ bool contains(const string& S, char c){
   return S.find(c)!=string::npos;
 }
 
+// vectorがsort済みであることが必要．
 template<class T>
 void unique_erase(vector<T>& A){
   A.erase(unique(nall(A)),A.end());
@@ -366,6 +366,8 @@ ll divc(ll N, ll d) {
 }
 
 ll mod_pos(ll N, ll d) {
+  assert(d>0);
+
   ll r = N % d;
   if (r < 0) r += d;
   return r;
@@ -374,20 +376,21 @@ ll mod_pos(ll N, ll d) {
 ll floor_sqrt(ll n){
   assert(n >= 0);
   ll x = sqrtl((long double)n);
-  while ((x+1) * (x+1) <= n) x++;
-  while (x * x > n) x--;
+  while ((i128)(x+1) * (x+1) <= n) x++;
+  while ((i128)x * x > n) x--;
   return x;
 }
 
 ll ceil_sqrt(ll n){
   assert(n >= 0);
   ll x = floor_sqrt(n);
-  if (x * x < n) x++;
+  if ((i128)x * x < n) x++;
   return x;
 }
 
 bool is_sq(ll n){
-  return sq(floor_sqrt(n))==n;
+  ll x=floor_sqrt(n);
+  return (i128)x*x==n;
 }
 
 ll floor_log2(ll x) {
@@ -408,7 +411,7 @@ ll nC2(ll x){
 }
 
 // 結果が空集合になるときに注意する．
-pair<ll,ll> cap(ll l, ll r, ll nr, ll nl){
+pair<ll,ll> cap(ll l, ll r, ll nl, ll nr){
   return {max(l,nl),min(r,nr)};
 }
 
