@@ -211,6 +211,52 @@ ostream& operator<<(ostream& os, const pair<T, U>& p) {
     return os << "(" << p.first << ", " << p.second << ")";
 }
 
+// vl
+vl& operator++(vl& a) {
+  for (auto& x : a) x++;
+  return a;
+}
+
+void operator++(vl& a, int) {
+  for (auto& x : a) x++;
+}
+
+vl& operator--(vl& a) {
+  for (auto& x : a) x--;
+  return a;
+}
+
+void operator--(vl& a, int) {
+  for (auto& x : a) x--;
+}
+
+// vvl
+vvl& operator++(vvl& a) {
+  for (auto& row : a) {
+    for (auto& x : row) x++;
+  }
+  return a;
+}
+
+void operator++(vvl& a, int) {
+  for (auto& row : a) {
+    for (auto& x : row) x++;
+  }
+}
+
+vvl& operator--(vvl& a) {
+  for (auto& row : a) {
+    for (auto& x : row) x--;
+  }
+  return a;
+}
+
+void operator--(vvl& a, int) {
+  for (auto& row : a) {
+    for (auto& x : row) x--;
+  }
+}
+
 void yes(void){cout << "Yes\n";}
 void no(void){cout << "No\n";}
 
