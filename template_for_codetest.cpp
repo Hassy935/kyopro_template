@@ -280,6 +280,17 @@ void coutvl(const vl& A){
   if(A.empty()) cout << '\n';
 }
 
+void show(){
+  cout << '\n';
+}
+
+template<class T, class... Ts>
+void show(const T& x, const Ts&... xs){
+  cout << x;
+  ((cout << ' ' << xs), ...);
+  cout << '\n';
+}
+
 void debug_ll() { cerr << '\n'; }
 
 template<class Head, class... Tail>
