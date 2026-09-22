@@ -296,16 +296,18 @@ void show(const T& x, const Ts&... xs){
   cout << '\n';
 }
 
-void debug_ll() { cerr << '\n'; }
+#ifdef LOCAL
+
+void debug_out() { cerr << '\n'; }
 
 template<class Head, class... Tail>
-void debug_ll(Head h, Tail... t) {
-    cerr << (ll)h;
+void debug_out(Head h, Tail... t) {
+    cerr << h;
     if constexpr (sizeof...(t)) cerr << ", ";
-    debug_ll(t...);
+    debug_out(t...);
 }
 
-#define dbg(...) cerr << "[" << #__VA_ARGS__ << "] = ", debug_ll(__VA_ARGS__)
+#define dbg(...) cerr << "[" << #__VA_ARGS__ << "] = ", debug_out(__VA_ARGS__)
 
 void debug(const string& S){
   cerr << S << '\n';
@@ -386,6 +388,13 @@ void debug(const unordered_map<T,U>& mp){
   }
   cerr << '\n';
 }
+
+#else
+
+#define dbg(...) ((void)0)
+#define debug(...) ((void)0)
+
+#endif
 
 // 数学系．
 
