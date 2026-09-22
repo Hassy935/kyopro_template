@@ -36,6 +36,7 @@ using ull=unsigned long long;
 
 using str=string;
 using vstr=vector<string>;
+using vvstr=vector<vstr>;
 
 using vl=vector<ll>;
 using vvl=vector<vl>;
@@ -44,6 +45,10 @@ using vvvl=vector<vvl>;
 using vb=vector<char>;
 using vvb=vector<vb>;
 using vvvb=vector<vvb>;
+
+using vld=vector<ld>;
+using vvld=vector<vld>;
+using vvvld=vector<vvld>;
 
 template<typename T> using vc=vector<T>;
 template<typename T> using vvc=vc<vc<T>>;
