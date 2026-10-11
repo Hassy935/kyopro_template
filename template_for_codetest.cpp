@@ -137,6 +137,12 @@ struct compress {
     return it - xs.begin();
   }
 
+  // x の圧縮後 index を返す
+  // get(x) と同じ
+  ll operator()(const T& x) const {
+    return get(x);
+  }
+
   // 圧縮後 index i の元の値を返す
   const T& operator[](ll i) const {
     assert(0 <= i && i < (ll)xs.size());
