@@ -6,7 +6,7 @@
 
 他の方が自由に使用，改変していただいて構いませんが，正しく動くことを保証するものではありません．
 
-ライブラリ内のコードは，template_for_codetest.cpp(https://github.com/Hassy935/kyopro_template/blob/main/template_for_codetest.cpp)を前提として動作します．
+ライブラリ内のコードは，[template_for_codetest.cpp](./template_for_codetest.cpp)を前提として動作します．
 
 ## License
 
