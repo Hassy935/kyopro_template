@@ -1,0 +1,199 @@
+{
+  "lambda simple": {
+    "prefix": "lam",
+    "body": [
+      "auto ${1:f} = [&](${2:args}) {",
+      "  $0",
+      "};"
+    ],
+    "description": "simple lambda"
+  },
+
+  "lambda expression": {
+    "prefix": "lame",
+    "body": [
+      "[&](${1:args}) {",
+      "  $0",
+      "}"
+    ],
+    "description": "lambda expression"
+  },
+
+  "in_grid lambda": {
+    "prefix": "ingrid",
+    "body": [
+      "auto in_grid = [&](ll ${1:x}, ll ${2:y}) {",
+      "  return 0 <= ${1} && ${1} < ${3:H} && 0 <= ${2} && ${2} < ${4:W};",
+      "};"
+    ],
+    "description": "grid boundary check lambda"
+  },
+
+  "binary search with judge": {
+    "prefix": "binjudge",
+    "body": [
+      "auto judge = [&](ll ${1:x})->bool {",
+      "  return ${2:condition};",
+      "};",
+      "",
+      "ll ${3:ok} = ${4:0}, ${5:ng} = ${6:4e18};",
+      "while (abs(${3} - ${5}) > 1) {",
+      "  ll ${7:mid} = (${3} + ${5}) / 2;",
+      "  if (judge(${7})) {",
+      "    ${3} = ${7};",
+      "  } else {",
+      "    ${5} = ${7};",
+      "  }",
+      "}",
+      "$0"
+    ],
+    "description": "binary search with judge lambda (ok/ng)"
+  },
+
+  "binary search with judge (ld)": {
+    "prefix": "binjudgeld",
+    "body": [
+      "auto judge = [&](ld ${1:x})->bool {",
+      "  return ${2:condition};",
+      "};",
+      "",
+      "ld ${3:ok} = ${4:0}, ${5:ng} = ${6:4e18};",
+      "rep(i,${7:100}) {",
+      "  ld ${8:mid} = (${3} + ${5}) / 2;",
+      "  if (judge(${8})) {",
+      "    ${3} = ${8};",
+      "  } else {",
+      "    ${5} = ${8};",
+      "  }",
+      "}",
+      "$0"
+    ],
+    "description": "binary search with judge lambda (ld, ok/ng)"
+  },
+
+  "using pair ll ll": {
+    "prefix": "upll",
+    "body": [
+      "using P = pair<ll, ll>;"
+    ],
+    "description": "using P = pair<ll, ll>;"
+  },
+
+  "using tuple ll ll ll (alias editable)": {
+    "prefix": "utll",
+    "body": [
+      "using T = tuple<ll, ll, ll>;"
+    ],
+    "description": "using alias = tuple<ll,ll,ll> (alias editable, ll fixed)"
+  },
+
+  "const inf ll editable": {
+    "prefix": "infll",
+    "body": [
+      "const ll inf = ${1:1e18};"
+    ],
+    "description": "const ll inf = value (default 1e9)"
+  },
+
+  "encode decode grid index": {
+    "prefix": "encdec",
+    "body": [
+      "auto enc = [&](ll ${1:x}, ll ${2:y})->ll {",
+      "  return ${1}*${3:W} + ${2};",
+      "};",
+      "",
+      "auto dec = [&](ll p)->pair<ll,ll> {",
+      "  return {p/${3:W}, p%${3:W}};",
+      "};"
+    ],
+    "description": "encode (x,y)->p and decode p->(x,y) for grid indexing"
+  },
+
+  "AtCoder Library all": {
+    "prefix": "acl",
+    "body": [
+      "#include <atcoder/all>",
+      "using namespace atcoder;"
+    ],
+    "description": "include atcoder/all and using namespace atcoder"
+  },
+
+  "mint9": {
+    "prefix": "mint9",
+    "body": [
+      "using mint = atcoder::modint998244353;"
+    ],
+    "description": "modint998244353 の別名"
+  },
+
+  "mint1": {
+    "prefix": "mint1",
+    "body": [
+      "using mint = atcoder::modint1000000007;"
+    ],
+    "description": "modint1000000007 の別名"
+  },
+
+  "mint0": {
+    "prefix": "mint0",
+    "body": [
+      "using mint = modint;"
+    ],
+    "description": "modint の別名"
+  },
+
+  "nx ny from dir": {
+    "prefix": "nxny",
+    "body": [
+      "ll nx=x+dx[dir], ny=y+dy[dir];"
+    ],
+    "description": "Create nx and ny from x, y, dx[dir], dy[dir]"
+  },
+
+  "next_permutation loop": {
+    "prefix": "nperm",
+    "body": [
+      "do{",
+      "  $0",
+      "}while(next_permutation(nall(${1:p})));"
+    ],
+    "description": "Enumerate all permutations"
+  },
+
+  "yes else no": {
+    "prefix": "yesno",
+    "body": [
+      "yes();",
+      "else no();"
+    ],
+    "description": "yes(); else no();"
+  },
+
+  "debug mint vector": {
+    "prefix": "debugmint",
+    "body": [
+      "void debug(const vc<mint>& A){",
+      "  forr(x,A){",
+      "    cerr << x.val() << ' ';",
+      "  }",
+      "  cerr << '\\n';",
+      "}",
+      "",
+      "void debug(const vvc<mint>& A){",
+      "  forr(row,A){",
+      "    debug(row);",
+      "  }",
+      "}"
+    ],
+    "description": "debug functions for vc<mint> and vvc<mint>"
+  },
+
+  "LOCAL": {
+    "prefix": "local",
+    "body": [
+      "#ifdef LOCAL",
+      "\t$0",
+      "#endif"
+    ]
+  }
+}
