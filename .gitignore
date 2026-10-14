@@ -1,3 +1,12 @@
 *
 !.gitignore
 !template_for_codetest.cpp
+
+# Library
+!Library/
+!Library/**/
+!Library/**/*.hpp
+
+# Snippets
+!snippets/
+!snippets/*.code-snippets
