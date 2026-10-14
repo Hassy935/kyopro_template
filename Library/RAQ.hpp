@@ -1,3 +1,5 @@
+#pragma once
+
 struct RAQ{
   ll n,sz;
   vl lazy;

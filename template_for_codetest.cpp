@@ -1,3 +1,5 @@
+// https://github.com/Hassy935/kyopro_template
+
 #ifdef LOCAL
 #define _GLIBCXX_DEBUG
 #endif
