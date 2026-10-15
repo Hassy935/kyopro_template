@@ -1,5 +1,6 @@
 *
 !.gitignore
+!README.md
 !template_for_codetest.cpp
 
 # Library
@@ -10,3 +11,6 @@
 # Snippets
 !snippets/
 !snippets/*.code-snippets
+
+# License
+!LICENSE
