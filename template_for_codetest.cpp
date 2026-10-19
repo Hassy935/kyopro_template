@@ -335,6 +335,12 @@ void coutvl(const vl& A){
   if(A.empty()) cout << '\n';
 }
 
+void coutvl_v(const vl& A){
+  ll N=ssize(A);
+  rep(i,N) cout << A[i] << '\n';
+  if(A.empty()) cout << '\n';
+}
+
 void show(){
   cout << '\n';
 }

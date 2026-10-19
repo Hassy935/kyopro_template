@@ -19,6 +19,17 @@
     "description": "lambda expression"
   },
 
+  "lamr": {
+    "prefix": "lamr",
+    "scope": "cpp",
+    "body": [
+      "auto ${1:f} = [&](this auto&& self, ${2:ll x}) -> ${3:void} {",
+      "  $0",
+      "};"
+    ],
+    "description": "C++23 recursive lambda"
+  },
+
   "in_grid lambda": {
     "prefix": "ingrid",
     "body": [
@@ -172,6 +183,7 @@
   "debug mint vector": {
     "prefix": "debugmint",
     "body": [
+      "#ifdef LOCAL",
       "void debug(const vc<mint>& A){",
       "  forr(x,A){",
       "    cerr << x.val() << ' ';",
@@ -183,9 +195,10 @@
       "  forr(row,A){",
       "    debug(row);",
       "  }",
-      "}"
+      "}",
+      "#endif"
     ],
-    "description": "debug functions for vc<mint> and vvc<mint>"
+    "description": "Debug functions for vc<mint> and vvc<mint> (LOCAL only)"
   },
 
   "LOCAL": {
