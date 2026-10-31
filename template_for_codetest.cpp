@@ -121,8 +121,10 @@ struct compress {
     build();
   }
 
-  void add(const T& x) {
-    xs.push_back(x);
+  template<class... Args>
+  void add(const T& x, const Args&... args) {
+  xs.push_back(x);
+  (xs.push_back(args), ...);
   }
 
   void build() {

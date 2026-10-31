@@ -156,7 +156,8 @@
   "nx ny from dir": {
     "prefix": "nxny",
     "body": [
-      "ll nx=x+dx[dir], ny=y+dy[dir];"
+      "ll nx=x+dx[dir], ny=y+dy[dir];",
+      "if(!in_grid(nx,ny)) continue;"
     ],
     "description": "Create nx and ny from x, y, dx[dir], dy[dir]"
   },
