@@ -343,6 +343,17 @@ void coutvl_v(const vl& A){
   if(A.empty()) cout << '\n';
 }
 
+template<class V, class... Vs>
+void cin_zip(V& a, Vs&... b){
+  ll n=ssize(a);
+  assert(((ssize(b)==n)&&...));
+
+  rep(i,n){
+    cin >> a[i];
+    ((cin >> b[i]),...);
+  }
+}
+
 void show(){
   cout << '\n';
 }
@@ -453,6 +464,57 @@ void debug(const unordered_map<T,U>& mp){
 #define debug(...) ((void)0)
 
 #endif
+
+// グラフ系．
+bool is_reachable(vvl& G, ll s, ll g){
+  ll N=ssize(G);
+
+  queue<ll> qe;
+  vb visited(N);
+
+  visited[s]=true;
+  qe.push(s);
+
+  while(!qe.empty()){
+    ll v=qe.front();
+    qe.pop();
+
+    if(v==g) return true;
+
+    forr(nv,G[v]){
+      if(visited[nv]) continue;
+
+      visited[nv]=true;
+      qe.push(nv);
+    }
+  }
+
+  return false;
+}
+
+vl get_dist(vvl& G,ll s){
+  ll N=ssize(G);
+
+  queue<ll> qe;
+  vl dist(N,-1);
+
+  dist[s]=0;
+  qe.push(s);
+
+  while(!qe.empty()){
+    ll v=qe.front();
+    qe.pop();
+
+    forr(nv,G[v]){
+      if(dist[nv]!=-1) continue;
+
+      dist[nv]=dist[v]+1;
+      qe.push(nv);
+    }
+  }
+
+  return dist;
+}
 
 // 数学系．
 
