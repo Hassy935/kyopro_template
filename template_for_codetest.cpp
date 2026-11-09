@@ -466,7 +466,7 @@ void debug(const unordered_map<T,U>& mp){
 #endif
 
 // グラフ系．
-bool is_reachable(vvl& G, ll s, ll g){
+bool is_reachable(const vvl& G, ll s, ll g){
   ll N=ssize(G);
 
   queue<ll> qe;
@@ -492,7 +492,7 @@ bool is_reachable(vvl& G, ll s, ll g){
   return false;
 }
 
-vl get_dist(vvl& G,ll s){
+vl get_dist(const vvl& G, ll s){
   ll N=ssize(G);
 
   queue<ll> qe;
