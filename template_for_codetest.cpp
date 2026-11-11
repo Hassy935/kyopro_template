@@ -516,6 +516,21 @@ vl get_dist(const vvl& G, ll s){
   return dist;
 }
 
+void graph_export(const vvl& G){
+  #ifdef LOCAL
+  ll N=ssize(G);
+  cerr << N << '\n';
+
+  rep(v,N){
+    cerr << v << ' ' << ssize(G[v]) << ' ';
+    forr(nv,G[v]){
+      cerr << nv << ' ';
+    }
+    cerr << '\n';
+  } 
+  #endif
+}
+
 // 数学系．
 
 const ld PI = numbers::pi_v<ld>;
