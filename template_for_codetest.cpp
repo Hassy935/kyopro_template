@@ -516,7 +516,7 @@ vl get_dist(const vvl& G, ll s){
   return dist;
 }
 
-void graph_export(const vvl& G){
+void adlist(const vvl& G){
   #ifdef LOCAL
   ll N=ssize(G);
   cerr << N << '\n';
