@@ -528,6 +528,10 @@ void adlist(const vvl& G){
     }
     cerr << '\n';
   } 
+
+  #else
+  G.resize(0);
+
   #endif
 }
 
