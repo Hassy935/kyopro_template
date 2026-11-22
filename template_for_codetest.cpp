@@ -530,7 +530,7 @@ void adlist(const vvl& G){
   } 
 
   #else
-  G.resize(0);
+  void(ssize(G));
 
   #endif
 }
