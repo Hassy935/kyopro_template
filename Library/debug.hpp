@@ -81,6 +81,14 @@ void debug(const unordered_set<T>& st){
   cerr << '\n';
 }
 
+template<class T>
+void debug(const unordered_multiset<T>& st){
+  forr(c,st){
+    cerr << c << ' ';
+  }
+  cerr << '\n';
+}
+
 template<class T,class U>
 void debug(const map<T,U>& mp){
   for(auto [k,v]:mp){

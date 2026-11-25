@@ -61,6 +61,9 @@ template<typename T> using vvvc=vc<vvc<T>>;
 template<class T>
 using uod_set = unordered_set<T>;
 
+template<class T>
+using uod_multiset = unordered_multiset<T>;
+
 template<class K, class V>
 using uod_map = unordered_map<K, V>;
 

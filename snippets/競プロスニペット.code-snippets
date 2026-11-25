@@ -209,5 +209,23 @@
       "\t$0",
       "#endif"
     ]
+  },
+
+  "4方向移動": {
+    "prefix": "dir4",
+    "body": [
+      "const vl dx={1,0,-1,0};",
+      "const vl dy={0,1,0,-1};",
+      "const str dict=\"DRUL\";"
+    ],
+    "description": "4近傍：下・右・上・左"
+  },
+  "8方向移動": {
+    "prefix": "dir8",
+    "body": [
+      "const vl dx={1,1,0,-1,-1,-1,0,1};",
+      "const vl dy={0,1,1,1,0,-1,-1,-1};"
+    ],
+    "description": "8近傍：下から反時計回り"
   }
 }

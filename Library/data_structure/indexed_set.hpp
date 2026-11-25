@@ -1,5 +1,5 @@
 #pragma once
-#include <Library/template.hpp>
+#include <Library/common_setting.hpp>
 
 // IndexedSet (平方分割による順序統計付き集合)
 // Inspired by tatyam's SortedSet.
@@ -486,3 +486,9 @@ using IndexedSet=IndexedSetBase<T,Compare,false>;
 
 template<class T,class Compare=std::less<T>>
 using IndexedMultiset=IndexedSetBase<T,Compare,true>;
+
+template<class T,class Compare=std::less<T>>
+using idx_set=IndexedSet<T,Compare>;
+
+template<class T,class Compare=std::less<T>>
+using idx_multiset=IndexedMultiset<T,Compare>;
