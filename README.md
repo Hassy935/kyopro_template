@@ -6,8 +6,6 @@
 
 他の方が自由に使用，改変していただいて構いませんが，正しく動くことを保証するものではありません．
 
-ライブラリ内のコードは，[template_for_codetest.cpp](./template_for_codetest.cpp)を前提として動作します．
-
 ## License
 
 コードは，特に断りのない限り [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) の下で公開しています．
