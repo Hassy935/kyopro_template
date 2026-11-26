@@ -250,7 +250,8 @@ public:
     return true;
   }
 
-  bool erase(const T& x){
+private:
+  bool erase_one_impl(const T& x){
     if(empty()) return false;
     ll i=locate(x);
     auto& b=a[i];
@@ -261,6 +262,15 @@ public:
     repair(i);
     adjust();
     return true;
+  }
+
+public:
+  bool erase(const T& x) requires (!Multi) {
+    return erase_one_impl(x);
+  }
+
+  bool erase_one(const T& x) requires Multi {
+    return erase_one_impl(x);
   }
 
   // x を k 個追加する。実際の追加数を返す。
@@ -282,8 +292,8 @@ public:
   }
 
   // 比較順で先頭から最大 k 個の同値要素を削除。
-  ll erase(const T& x,ll k) requires Multi {
-    assert(k>=0 && "IndexedMultiset::erase(): negative count");
+  ll erase_many(const T& x,ll k) requires Multi {
+    assert(k>=0 && "IndexedMultiset::erase_many(): negative count");
     if(k==0 || empty()) return 0;
     auto [i,j]=bound_pos(x,false);
     if(i==std::ssize(a) || cmp(x,a[i][j])) return 0;
@@ -305,7 +315,7 @@ public:
     return k;
   }
 
-  ll erase_all(const T& x) requires Multi { return erase(x,n); }
+  ll erase_all(const T& x) requires Multi { return erase_many(x,n); }
 
   // 添字で指定した要素そのものを削除する。
   void erase_at(ll k){
