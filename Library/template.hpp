@@ -23,7 +23,6 @@
 #include <Library/graph/graph_debug.hpp>
 
 #include <Library/data_structure/indexed_set.hpp>
-#include <Library/data_structure/indexed_set.hpp>
 #include <Library/data_structure/interval_set.hpp>
 #include <Library/data_structure/potential_union_find.hpp>
 
