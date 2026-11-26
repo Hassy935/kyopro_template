@@ -3,7 +3,12 @@ import re
 import sys
 from pathlib import Path
 
-KYOPRO_HOME = Path(__file__).resolve().parent.parent
+SCRIPT_DIR = Path(__file__).resolve().parent
+
+if (SCRIPT_DIR / "Library").is_dir():
+    KYOPRO_HOME = SCRIPT_DIR
+else:
+    KYOPRO_HOME = SCRIPT_DIR.parent
 
 INCLUDE_RE = re.compile(
     r'^\s*#\s*include\s*(?:<(Library/[^>]+)>|"([^"\n]+)")\s*(?://.*)?$'
@@ -114,8 +119,6 @@ def expand(src):
             res.append("")
 
         active.remove(path)
-
-    dfs(src)
 
     dfs(src)
 
