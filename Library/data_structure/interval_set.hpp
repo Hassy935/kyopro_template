@@ -135,7 +135,7 @@ public:
   }
 
   // x 以上の最小の未包含整数．
-  ll mex(ll x=0) const {
+  ll mex(ll x) const {
     auto it=locate(x);
     return it==st.end() ? x : it->second;
   }
