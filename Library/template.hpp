@@ -1,23 +1,23 @@
 #pragma once
 
-#include <Library/common_setting.hpp>
-#include <Library/io.hpp>
-#include <Library/constant.hpp>
+#include <Library/core/common_setting.hpp>
+#include <Library/io/io.hpp>
+#include <Library/math/constant.hpp>
 
-#include <Library/debug.hpp>
+#include <Library/io/debug.hpp>
 
-#include <Library/chminmax.hpp>
-#include <Library/rle.hpp>
-#include <Library/make_vec.hpp>
-#include <Library/vector_operation.hpp>
-#include <Library/contains.hpp>
-#include <Library/integer.hpp>
-#include <Library/bit_operation.hpp>
-#include <Library/prefix_suffix.hpp>
-#include <Library/interval.hpp>
-#include <Library/compress.hpp>
-#include <Library/base_change.hpp>
-#include <Library/direction.hpp>
+#include <Library/utility/chminmax.hpp>
+#include <Library/sequence/rle.hpp>
+#include <Library/utility/make_vec.hpp>
+#include <Library/sequence/vector_operation.hpp>
+#include <Library/utility/contains.hpp>
+#include <Library/math/integer.hpp>
+#include <Library/math/bit_operation.hpp>
+#include <Library/sequence/prefix_suffix.hpp>
+#include <Library/utility/interval.hpp>
+#include <Library/utility/compress.hpp>
+#include <Library/math/base_change.hpp>
+#include <Library/grid/direction.hpp>
 
 #include <Library/graph/bfs.hpp>
 #include <Library/graph/graph_debug.hpp>

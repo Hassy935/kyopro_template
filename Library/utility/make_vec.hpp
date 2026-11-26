@@ -1,5 +1,5 @@
 #pragma once
-#include <Library/common_setting.hpp>
+#include <Library/core/common_setting.hpp>
 
 template<class T>
 auto make_vec(size_t n, const T& x){

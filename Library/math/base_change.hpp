@@ -1,5 +1,5 @@
 #pragma once
-#include <Library/common_setting.hpp>
+#include <Library/core/common_setting.hpp>
 
 // S: a 進数表記の非負整数．各桁は 0 以上 a 未満．
 // 2 <= a,b <= 10．O(|S|^2)．

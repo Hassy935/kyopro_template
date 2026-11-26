@@ -1,5 +1,5 @@
 #pragma once
-#include <Library/common_setting.hpp>
+#include <Library/core/common_setting.hpp>
 
 inline ll sumvl(const vl& A){
   return accumulate(nall(A),0LL);

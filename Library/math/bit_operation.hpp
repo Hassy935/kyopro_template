@@ -1,5 +1,5 @@
 #pragma once
-#include <Library/common_setting.hpp>
+#include <Library/core/common_setting.hpp>
 
 inline ll popcountll(ll a){
   assert(a>=0);

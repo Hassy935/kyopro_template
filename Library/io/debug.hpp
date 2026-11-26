@@ -1,6 +1,6 @@
 #pragma once
-#include <Library/common_setting.hpp>
-#include <Library/io.hpp>
+#include <Library/core/common_setting.hpp>
+#include <Library/io/io.hpp>
 
 #ifdef LOCAL
 

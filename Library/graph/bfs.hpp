@@ -1,5 +1,5 @@
 #pragma once
-#include <Library/common_setting.hpp>
+#include <Library/core/common_setting.hpp>
 
 // 頂点番号は 0-indexed．s, g および隣接頂点は範囲内とする．
 inline bool is_reachable(const vvl& G, ll s, ll g){

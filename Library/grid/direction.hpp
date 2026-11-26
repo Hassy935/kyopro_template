@@ -1,5 +1,5 @@
 #pragma once
-#include <Library/common_setting.hpp>
+#include <Library/core/common_setting.hpp>
 
 // 行・列の変化量を返す．
 inline pair<ll,ll> dir_to_pair(char c){
