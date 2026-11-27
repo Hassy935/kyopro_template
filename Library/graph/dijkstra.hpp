@@ -1,0 +1,67 @@
+#pragma once
+
+#include <Library/core/common_setting.hpp>
+
+namespace dijkstra_detail {
+template<bool WithPath=false>
+auto run(const vvc<pair<ll,ll>>& G, span<const ll> sources, optional<ll> target=nullopt){
+  const ll n=ssize(G);
+  const ll t=target.value_or(-1);
+  assert(!target || (0<=t && t<n));
+  vl dist(n,-1),par;
+  if constexpr(WithPath) par.assign(n,-1);
+  priority_queue_g<pair<ll,ll>> qe;
+
+  for(ll s:sources){
+    assert(0<=s && s<n);
+    if(dist[s]!=-1) continue;
+    dist[s]=0;
+    if constexpr(WithPath) par[s]=s;
+    qe.emplace(0,s);
+  }
+
+  while(!qe.empty()){
+    const auto [d,v]=qe.top();
+    qe.pop();
+    if(d!=dist[v]) continue;
+    if(v==t) break;
+    for(const auto& [nv,cost]:G[v]){
+      assert(0<=nv && nv<n);
+      assert(cost>=0);
+      if(cost>numeric_limits<ll>::max()-d) continue;
+      const ll nd=d+cost;
+      if(dist[nv]!=-1 && dist[nv]<=nd) continue;
+      dist[nv]=nd;
+      if constexpr(WithPath) par[nv]=v;
+      qe.emplace(nd,nv);
+    }
+  }
+
+  if constexpr(WithPath) return pair<vl,vl>{move(dist),move(par)};
+  else return dist;
+}
+} // namespace dijkstra_detail
+
+inline vl dijkstra(const vvc<pair<ll,ll>>& G, ll s){
+  return dijkstra_detail::run(G,span<const ll>(&s,1));
+}
+
+inline vl dijkstra(const vvc<pair<ll,ll>>& G, const vl& sources){
+  return dijkstra_detail::run(G,sources);
+}
+
+inline ll dijkstra(const vvc<pair<ll,ll>>& G, ll s, ll t){
+  return dijkstra_detail::run(G,span<const ll>(&s,1),t)[t];
+}
+
+inline ll dijkstra(const vvc<pair<ll,ll>>& G, const vl& sources, ll t){
+  return dijkstra_detail::run(G,sources,t)[t];
+}
+
+inline pair<vl,vl> dijkstra_with_path(const vvc<pair<ll,ll>>& G, ll s){
+  return dijkstra_detail::run<true>(G,span<const ll>(&s,1));
+}
+
+inline pair<vl,vl> dijkstra_with_path(const vvc<pair<ll,ll>>& G, const vl& sources){
+  return dijkstra_detail::run<true>(G,sources);
+}

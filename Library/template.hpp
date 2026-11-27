@@ -12,7 +12,10 @@
 #include <Library/data_structure/potential_union_find.hpp>
 
 #include <Library/graph/bfs.hpp>
+#include <Library/graph/bfs01.hpp>
+#include <Library/graph/dijkstra.hpp>
 #include <Library/graph/graph_debug.hpp>
+#include <Library/graph/restore_path.hpp>
 
 #include <Library/grid/direction.hpp>
 

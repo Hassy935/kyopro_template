@@ -1,4 +1,5 @@
 #pragma once
+#include <Library/core/common_setting.hpp>
 
 template<class T, ll k>
 struct kth_smallest{
