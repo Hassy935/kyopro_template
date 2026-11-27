@@ -33,7 +33,7 @@ struct compress {
     return get(x);
   }
 
-  const T& operator[](ll i) const {
+  typename vector<T>::const_reference operator[](ll i) const {
     assert(0<=i&&i<ssize(xs));
     return xs[i];
   }
