@@ -53,6 +53,12 @@ public:
 
   ll size() const { return n_; }
 
+#ifdef LOCAL
+  auto debug_view() const {
+    return views::iota(0LL,size()) | views::transform([this](ll p){ return get(p); });
+  }
+#endif
+
   S get(ll p) const {
     assert(0 <= p && p < n_);
     F f = id();

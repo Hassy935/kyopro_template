@@ -109,6 +109,39 @@ public:
     return bad_cc;
   }
 
+#ifdef LOCAL
+  auto debug_view() const {
+    using Vertex=pair<ll,optional<T>>;
+    using Component=tuple<ll,bool,vc<Vertex>>;
+
+    vl roots(_n,-1),component_index(_n,-1);
+    vc<optional<T>> weights(_n);
+    vc<Component> components;
+    components.reserve(cc);
+    rep(v,_n){
+      if(par[v]!=-1) continue;
+      roots[v]=v;
+      if(!bad[v]) weights[v]=T{};
+      component_index[v]=ssize(components);
+      components.eb(v,bool(bad[v]),vc<Vertex>{});
+    }
+
+    // 親を先に解決し，根と相対ポテンシャルを一時配列に記録する．
+    auto resolve=[&](this auto&& self,ll v) -> ll {
+      if(roots[v]!=-1) return roots[v];
+      ll p=par[v],r=self(p);
+      if(!bad[r]) weights[v]=diff_weight[v]+*weights[p];
+      return roots[v]=r;
+    };
+    rep(v,_n) resolve(v);
+    rep(v,_n){
+      auto& vertices=std::get<2>(components[component_index[roots[v]]]);
+      vertices.eb(v,std::move(weights[v]));
+    }
+    return components;
+  }
+#endif
+
   vvl groups(){
     vl leader_id(_n),group_size(_n);
     rep(i,_n){

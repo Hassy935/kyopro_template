@@ -2,9 +2,29 @@
 #include <Library/core/common_setting.hpp>
 
 template<class T>
+istream& operator>>(istream& is, vector<T>& v);
+
+template<class T>
+istream& operator>>(istream& is, deque<T>& v);
+
+template<class T, class U>
+istream& operator>>(istream& is, pair<T,U>& p);
+
+template<class T>
 istream& operator>>(istream& is, vector<T>& v){
   for(auto& x : v) is >> x;
   return is;
+}
+
+template<class T>
+istream& operator>>(istream& is, deque<T>& v){
+  for(auto& x : v) is >> x;
+  return is;
+}
+
+template<class T, class U>
+istream& operator>>(istream& is, pair<T,U>& p){
+  return is >> p.first >> p.second;
 }
 
 template<class T, class U>
