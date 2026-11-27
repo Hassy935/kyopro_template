@@ -19,10 +19,34 @@ ll mapping(F f,ll x){ return (f.a*x+f.b)%MOD; }
 F composition(F f,F g){ return {f.a*g.a%MOD,(f.a*g.b+f.b)%MOD}; }
 F id(){ return {1,0}; }
 using Seg = DualSegmentTree<ll,F,mapping,composition,id>;
+constexpr ull random_seed=20261128;
 
-void verify(const Seg& seg,const vector<ll>& a){
+void verify(const Seg& seg,const vector<ll>& a,ll operation=-1){
   check(seg.size()==ssize(a));
-  for(ll p=0;p<ssize(a);p++) check(seg.get(p)==a[p]);
+  for(ll p=0;p<ssize(a);p++){
+    const ll actual=seg.get(p);
+    if(actual!=a[p]){
+      cerr << "n=" << a.size() << ", operation=" << operation << ", p=" << p
+           << ", expected=" << a[p] << ", actual=" << actual << '\n';
+      if(operation>=0) cerr << "seed=" << random_seed << '\n';
+      check(false);
+    }
+  }
+}
+
+void pending_order(){
+  Seg seg(8,1);
+  seg.apply(0,4,{2,3});
+  seg.apply(0,8,{3,7});
+  // 子の古い作用の後に，親の新しい作用を適用する．
+  verify(seg,{22,22,22,22,10,10,10,10});
+  seg.apply(3,3,{0,99});
+
+  seg.apply(2,6,{0,4});
+  seg.apply(0,8,{2,1});
+  seg.set(2,5);
+  seg.apply(3,{3,2});
+  verify(seg,{45,45,5,29,9,9,21,21});
 }
 
 void boundary(){
@@ -81,9 +105,9 @@ void exhaustive(){
 }
 
 void random(){
-  mt19937_64 rng(20261128);
   ll count=0;
   for(ll n:{1,2,3,4,5,7,8,9,15,16,17,31,32,33,63,64,65,127,128,129}){
+    mt19937_64 rng(random_seed);
     vector<ll> a(n);
     for(auto& x:a) x=rng()%MOD;
     Seg seg(a);
@@ -100,17 +124,17 @@ void random(){
           break;
         case 1: seg.apply(p,f); a[p]=mapping(f,a[p]); break;
         case 2: a[p]=rng()%MOD; seg.set(p,a[p]); break;
-        case 3: check(seg.get(p)==a[p]); break;
+        case 3: break;
         case 4:
           seg.apply(0,n,f);
           for(auto& x:a) x=mapping(f,x);
           break;
       }
-      verify(seg,a);
+      verify(seg,a,q);
       count++;
     }
   }
-  cout << "Affine random: " << count << " operations passed\n";
+  cout << "Affine random: " << count << " operations passed (seed " << random_seed << ")\n";
 }
 }
 
@@ -148,6 +172,7 @@ void run(){
 
 int main(){
   affine_test::boundary();
+  affine_test::pending_order();
   assignment_test::run();
   bool_test::run();
   cout << "Boundary, alias, assignment and bool tests passed\n";

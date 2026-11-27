@@ -2,8 +2,8 @@
 
 #include <Library/core/common_setting.hpp>
 
-// composition(f,g)はgfを表す．
-// 特に，(gf)(x)=g(f(x))を満たすことが必要．
+// composition(f,g)は先にg，後にfを適用する作用を表す．
+// mapping(composition(f,g),x) == mapping(f,mapping(g,x)) を満たすことが必要．
 template<class S, class F, auto mapping, auto composition, auto id>
 class DualSegmentTree {
   ll n_ = 0, size_ = 1, log_ = 0;
