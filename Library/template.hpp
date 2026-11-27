@@ -28,5 +28,5 @@
 #include <Library/utility/chminmax.hpp>
 #include <Library/utility/compress.hpp>
 #include <Library/utility/contains.hpp>
-#include <Library/utility/interval.hpp>
+#include <Library/utility/interval_operation.hpp>
 #include <Library/utility/make_vec.hpp>
