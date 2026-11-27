@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Library/algorithm/mo.hpp>
+
 #include <Library/core/common_setting.hpp>
 
 #include <Library/data_structure/indexed_set.hpp>
@@ -18,7 +20,9 @@
 #include <Library/math/bit_operation.hpp>
 #include <Library/math/combination.hpp>
 #include <Library/math/constant.hpp>
+#include <Library/math/eratosthenes_sieve.hpp>
 #include <Library/math/integer.hpp>
+#include <Library/math/linear_sieve.hpp>
 
 #include <Library/sequence/prefix_suffix.hpp>
 #include <Library/sequence/rle.hpp>
