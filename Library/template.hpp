@@ -16,6 +16,7 @@
 
 #include <Library/math/base_change.hpp>
 #include <Library/math/bit_operation.hpp>
+#include <Library/math/combination.hpp>
 #include <Library/math/constant.hpp>
 #include <Library/math/integer.hpp>
 
