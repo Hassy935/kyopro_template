@@ -29,6 +29,7 @@
 #include <Library/math/eratosthenes_sieve.hpp>
 #include <Library/math/integer.hpp>
 #include <Library/math/linear_sieve.hpp>
+#include <Library/math/matrix.hpp>
 #include <Library/math/modint.hpp>
 
 #include <Library/sequence/prefix_suffix.hpp>

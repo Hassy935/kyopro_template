@@ -515,9 +515,24 @@ void nested_adapters(){
   expect_adapter("modint elements",modular,"998244352 2 ","[998244352, 2]");
 }
 
+void span_output(){
+  int data[]={1,2,3};
+  const span<int,3> full(data);
+  const vector<span<const int>> rows{full.first<2>(),{},full.last<1>()};
+  expect("span rows","1 2 \n\n3 \n[rows] = [[1, 2], [], [3]]\n", [&]{
+    debug(rows);
+    dbg(rows);
+  });
+  expect("fixed span","1 2 3 \n[full] = [1, 2, 3]\n", [&]{
+    debug(full);
+    dbg(full);
+  });
+}
+
 } // namespace debug_test
 
 int main(){
+  debug_test::span_output();
   debug_test::legacy();
   debug_test::recursive();
   debug_test::views_and_structures();

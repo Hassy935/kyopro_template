@@ -11,6 +11,9 @@ enum class Format { compact, sequence, rows, bytes, mapping, top_adapter, front_
 template<class T> inline constexpr bool vector_type=false;
 template<class T, class A> inline constexpr bool vector_type<vector<T,A>> = true;
 
+template<class T> inline constexpr bool span_type=false;
+template<class T, size_t N> inline constexpr bool span_type<span<T,N>> = true;
+
 template<class T> inline constexpr bool array_type=false;
 template<class T, size_t N> inline constexpr bool array_type<array<T,N>> = true;
 
@@ -26,10 +29,13 @@ constexpr Format debug_format(type_identity<T>){ return Format::compact; }
 
 template<class T, class A>
 constexpr Format debug_format(type_identity<vector<T,A>>){
-  if constexpr(vector_type<T> || is_same_v<T,string>) return Format::rows;
+  if constexpr(vector_type<T> || span_type<T> || is_same_v<T,string>) return Format::rows;
   if constexpr(is_same_v<T,char>) return Format::bytes;
   return Format::sequence;
 }
+
+template<class T, size_t N>
+constexpr Format debug_format(type_identity<span<T,N>>){ return Format::sequence; }
 
 template<class... Ts>
 constexpr Format debug_format(type_identity<deque<Ts...>>){ return Format::sequence; }
