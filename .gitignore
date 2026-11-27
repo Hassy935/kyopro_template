@@ -9,6 +9,16 @@
 !Library/**/
 !Library/**/*.hpp
 
+# Tests
+!tests/
+!tests/**/
+!tests/**/*_test.cpp
+
+# Benchmarks
+!benchmarks/
+!benchmarks/**/
+!benchmarks/**/*_benchmark.cpp
+
 # Snippets
 !snippets/
 !snippets/*.code-snippets
