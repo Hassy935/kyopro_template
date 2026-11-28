@@ -501,3 +501,9 @@ using idx_set=IndexedSet<T,Compare>;
 
 template<class T,class Compare=less<T>>
 using idx_multiset=IndexedMultiset<T,Compare>;
+
+template<class T,class Compare=less<T>>
+using indexed_set=IndexedSet<T,Compare>;
+
+template<class T,class Compare=less<T>>
+using indexed_multiset=IndexedMultiset<T,Compare>;

@@ -2,7 +2,7 @@
 #include <Library/core/common_setting.hpp>
 
 template<class T>
-bool chmin(T& a, T b){
+bool chmin(T& a, std::type_identity_t<T> b){
   if(a>b){
     a=b;
     return true;
@@ -11,7 +11,7 @@ bool chmin(T& a, T b){
 }
 
 template<class T>
-bool chmax(T& a, T b){
+bool chmax(T& a, std::type_identity_t<T> b){
   if(a<b){
     a=b;
     return true;

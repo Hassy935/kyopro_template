@@ -242,6 +242,17 @@ void types_and_iterators() {
   static_assert(std::bidirectional_iterator<IndexedMultiset<bool>::iterator>);
   static_assert(std::is_same_v<idx_set<I>,IndexedSet<I>>);
   static_assert(std::is_same_v<idx_multiset<I>,IndexedMultiset<I>>);
+  static_assert(std::is_same_v<indexed_set<I>,IndexedSet<I>>);
+  static_assert(std::is_same_v<indexed_multiset<I>,IndexedMultiset<I>>);
+  static_assert(std::is_same_v<indexed_set<I,std::greater<I>>,IndexedSet<I,std::greater<I>>>);
+  static_assert(std::is_same_v<indexed_multiset<I,std::greater<I>>,IndexedMultiset<I,std::greater<I>>>);
+  indexed_set<I> values;
+  IDX_CHECK(values.insert(2) && values.insert(1) && !values.insert(2));
+  IDX_CHECK(values[0]==1 && values.erase(2) && !values.contains(2));
+  indexed_multiset<I,std::greater<I>> duplicates(std::greater<I>{});
+  IDX_CHECK(duplicates.insert(1,2)==2 && duplicates.insert(3));
+  IDX_CHECK(duplicates[0]==3 && duplicates.count(1)==2);
+  IDX_CHECK(duplicates.erase_one(1) && duplicates.count(1)==1);
   IndexedMultiset<bool> st(std::vector<bool>{true,false,true});
   std::multiset<bool> ref{true,false,true};
   verify(st,ref,false,true);

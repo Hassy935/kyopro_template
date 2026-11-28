@@ -239,9 +239,9 @@ void views_and_structures(){
     debug(x);
     dbg(x);
   });
-  expect("existing iterators",
+  expect("ordered structures",
       "[3, 2, 1]\n[(1, 2), (1, 2), (2, 1)]\n"
-      "[(-9223372036854775808, 9223372036854775807)]\n[]\n",[]{
+      "[[-9223372036854775808, 9223372036854775807)]\n[]\n",[]{
     const IndexedSet<int,greater<int>> st(vector{1,3,2});
     const IndexedMultiset<pair<int,int>> ms(vector{pair{1,2},pair{2,1},pair{1,2}});
     IntervalSet intervals;
@@ -280,17 +280,37 @@ void ordered_ranges(){
   expect_object("indexed multiset tuples",tuples,
       "[(1, 2, 3), (1, 2, 3), (2, 1, 0)]","[(1, 2, 3), (1, 2, 3), (2, 1, 0)]");
   check(tuples.size()==3 && tuples.count({1,2,3})==2,"indexed multiset tuple state");
+}
 
+void interval_output(){
   IntervalSet intervals;
   expect_object("empty interval set",intervals,"[]","[]");
   check(intervals.empty(),"empty interval set state");
+
+  intervals.add(3,6);
+  expect_object("single interval",intervals,"[[3, 6)]","[[3, 6)]");
+  intervals.add(-2,0);
+  const IntervalSet disjoint=intervals;
+  const auto snapshot=vector(disjoint.begin(),disjoint.end());
+  expect_object("disjoint intervals",disjoint,"[[-2, 0), [3, 6)]","[[-2, 0), [3, 6)]");
+  const vector<IntervalSet> nested{disjoint,IntervalSet{}};
+  expect("nested interval sets",
+      "[[-2, 0), [3, 6)] [] \n[nested] = [[[-2, 0), [3, 6)], []]\n",[&]{
+    debug(nested);
+    dbg(nested);
+  });
+  check(snapshot==vector(disjoint.begin(),disjoint.end()) && disjoint.size()==5 &&
+        snapshot==vector(nested.front().begin(),nested.front().end()) && nested.back().empty(),
+        "disjoint interval set state");
+
+  intervals.clear();
   constexpr ll lo=numeric_limits<ll>::min(),hi=numeric_limits<ll>::max();
   intervals.add(lo,hi);
-  const auto snapshot=vector(intervals.begin(),intervals.end());
   expect_object("wide interval set",intervals,
-      "[(-9223372036854775808, 9223372036854775807)]",
-      "[(-9223372036854775808, 9223372036854775807)]");
-  check(snapshot==vector(intervals.begin(),intervals.end()) && intervals.contains(lo,hi),
+      "[[-9223372036854775808, 9223372036854775807)]",
+      "[[-9223372036854775808, 9223372036854775807)]");
+  check(intervals.interval_count()==1 && intervals.get(lo)==IntervalSet::P{lo,hi} &&
+        intervals.contains(lo,hi),
         "wide interval set state");
 }
 
@@ -538,6 +558,7 @@ int main(){
   debug_test::views_and_structures();
   debug_test::adl_regression();
   debug_test::ordered_ranges();
+  debug_test::interval_output();
   debug_test::fenwick_output();
   debug_test::dual_output();
   debug_test::potential_output();
@@ -560,6 +581,9 @@ int main(){
   debug(++calls);
   dbg(++calls, view, local_only_variable);
   dbg(FenwickTree<>(++calls).debug_view());
+  [[maybe_unused]] IntervalSet intervals;
+  debug((++calls,as_const(intervals)));
+  dbg((++calls,as_const(intervals).debug_view()));
   stack<debug_test::Counted> counted;
   counted.emplace(7);
   debug_test::Counted::copies=0;

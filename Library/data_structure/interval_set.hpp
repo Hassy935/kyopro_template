@@ -186,6 +186,26 @@ public:
   // 要素単位ではなく区間単位で走査する．
   const_iterator begin() const { return st.cbegin(); }
   const_iterator end() const { return st.cend(); }
+
+#ifdef LOCAL
+private:
+  struct DebugView {
+    const IntervalSet& intervals;
+
+    friend ostream& operator<<(ostream& out,const DebugView& view){
+      out << '[';
+      bool first=true;
+      for(const auto& [l,r]:view.intervals){
+        if(!exchange(first,false)) out << ", ";
+        out << '[' << l << ", " << r << ')';
+      }
+      return out << ']';
+    }
+  };
+
+public:
+  DebugView debug_view() const { return {*this}; }
+#endif
 };
 
 using interval_set=IntervalSet;
