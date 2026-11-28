@@ -12,6 +12,7 @@
 #include <Library/data_structure/lazy_segment_tree.hpp>
 #include <Library/data_structure/potential_union_find.hpp>
 #include <Library/data_structure/segment_tree.hpp>
+#include <Library/data_structure/union_find.hpp>
 
 #include <Library/graph/bfs.hpp>
 #include <Library/graph/bfs01.hpp>
