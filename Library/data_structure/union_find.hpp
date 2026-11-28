@@ -91,3 +91,4 @@ public:
 };
 
 using union_find = UnionFind;
+using dsu = UnionFind;

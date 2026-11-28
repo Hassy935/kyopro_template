@@ -17,6 +17,7 @@ void check(bool ok,const char* message){
 }
 
 static_assert(is_same_v<UnionFind,union_find>);
+static_assert(is_same_v<UnionFind,dsu>);
 static_assert(is_same_v<decltype(declval<UnionFind&>().merge(0,0)),bool>);
 static_assert(is_same_v<decltype(declval<const UnionFind&>().groups()),vvl>);
 static_assert(is_nothrow_move_constructible_v<UnionFind> && is_nothrow_move_assignable_v<UnionFind>);
@@ -102,10 +103,11 @@ void exhaustive(){
 
 void random_sequences(){
   for(ll n:{1,2,7,33,63}){
-    UnionFind a(n),without_groups(n);
+    ::dsu a(n);
+    UnionFind without_groups(n);
     DSU old(n);
     atcoder::dsu acl(static_cast<int>(n));
-    PotentialUnionFind<ll> potential(n);
+    p_dsu<ll> potential(n);
     Naive expected(n);
     for(step=0;step<1000;++step){
       ll x=ll(rng()%n),y=ll(rng()%n);
